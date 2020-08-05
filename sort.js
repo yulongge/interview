@@ -52,7 +52,7 @@ function bubbleSortDown(arr) {
  * 3.重复第二步，直到所有元素均排序完毕
  */
 
- function selectionSort(arr) {
+function selectionSort(arr) {
 	var len = arr.length;
 	for(var i = 0; i< len - 1; i++) {
 		var minIndex = i; 
@@ -65,7 +65,7 @@ function bubbleSortDown(arr) {
 		arr[i] = arr[minIndex]; 
 		arr[minIndex] = minItem;
 	}
- }
+}
 
  //selectionSort(sortArr)
 
@@ -74,21 +74,20 @@ function bubbleSortDown(arr) {
   * 第一待排序序列第一个元素看做一个有序序列，把第二个元素到最后一个元素当成是未排序序列。
   * 从头到尾依次扫描未排序序列，将扫描到的每个元素插入有序序列的适当位置。（如果待插入的元素与有序序列中的某个元素相等，则将待插入元素插入到相等元素的后面。）
   */
- function insertionSort(arr) {
+function insertionSort(arr) {
 	var len = arr.length;
-	for(var i=0;i<len;i++) {
-		var temp = arr[i];
-		var inserIndex = i -1;
-		for(var j=inserIndex;j>0;j--) {
-			if(arr[j]>temp) {
-				arr[j+1] = arr[j]; 
-				inserIndex --;
-				//arr[j] = temp;
-			}
+	var preIndex, current;
+	for(var i = 1; i<len; i++) {
+		preIndex = i-1;
+		current = arr[i];
+		while(preIndex >=0 && arr[preIndex] > current) {
+			arr[preIndex + 1] = arr[preIndex];
+			preIndex --;
 		}
-		arr[inserIndex] = temp;
+		arr[preIndex +1] = current;
 	}
- }
+	console.log(arr, 'arr')
+}
 
- insertionSort(sortArr)
-console.log(sortArr, 'sortArr')
+insertionSort(sortArr)
+//console.log(sortArr, 'sortArr')
